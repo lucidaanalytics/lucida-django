@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lucida-django"
+version = "0.1.0"
+description = "Django integration for Lucida: settings, visitor middleware, flags bootstrap template tag"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = ["lucida-analytics>=0.1.0", "django>=4.2"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["lucida_django"]
+
+# Base SDK is lucida-analytics (sdks/python in the monorepo): `uv pip install -e ../python -e .`
+
+[project.urls]
+Homepage = "https://github.com/lucidaanalytics/lucida-django"
+Repository = "https://github.com/lucidaanalytics/lucida-django"
+Issues = "https://github.com/lucidaanalytics/lucida-django/issues"
