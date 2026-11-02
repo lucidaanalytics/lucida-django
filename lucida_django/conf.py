@@ -18,6 +18,7 @@ DEFAULTS: dict[str, Any] = {
     "consent_required": True,
     "consent_cookie": "lc_consent",
     "consent_granted": ("analytics", "granted", "true", "1"),
+    "fallbacks": None,  # {flag key: value} served with reason "fallback" when evaluation fails
     "client": None,  # inject a ready client (tests, custom transports)
 }
 
@@ -55,5 +56,7 @@ def get_client() -> Any:
             kw: dict[str, Any] = {"host": cfg["host"].rstrip("/"), "disabled": cfg["disabled"]}
             if cfg["secret_key"]:
                 kw["secret_key"] = cfg["secret_key"]
+            if cfg["fallbacks"]:
+                kw["fallbacks"] = cfg["fallbacks"]
             _client = Lucida(cfg["api_key"], **kw)
         return _client
